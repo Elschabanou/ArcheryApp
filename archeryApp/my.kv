@@ -1,0 +1,238 @@
+#:kivy 1.0.9
+#:import hex kivy.utils.get_color_from_hex
+#:import Factory kivy.factory.Factory
+
+
+<Label>
+    markup: True
+    font_size: '24dp'
+    background_color: hex('FFFFFF')
+    color: hex('FFFFFF')
+    bold: True
+    font_name: 'fonts/Poppins-Medium.ttf'
+
+<Button>
+    markup: True
+    font_size: '24dp'
+    background_normal: ''
+    background_color: 1/255,18/255,172/255, 0.52
+    bold: True
+    font_name: 'fonts/Poppins-Bold.ttf'
+
+<Home>:
+    canvas.before:
+        Color:
+            rgba: hex("49A8FF")
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    name: "home"
+
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.width, root.height
+        padding: 20
+        spacing: 20
+        Label:
+            text: "Archery"
+            font_name: "fonts/Island_Moments/IslandMoments-Regular.ttf"
+            font_size: 96
+        Label:
+            text: "Score"
+            font_name: "fonts/Island_Moments/IslandMoments-Regular.ttf"
+            font_size: 80
+        Button:
+            id: marian
+            text: "Marian"
+            on_release:
+                root.manager.transition.direction = "left"
+                root.switchScreen("Marian")
+
+
+
+        Button:
+            id: sophia
+            text: "Sophia"
+            on_release:
+                root.manager.transition.direction = "left"
+                root.switchScreen("Sophia")
+
+        Button:
+            id: sonja
+            text: "Sonja"
+            on_release:
+                root.manager.transition.direction = "left"
+                root.switchScreen("Sonja")
+
+<Score1>:
+    canvas.before:
+        Color:
+            rgba: hex("FFFFFF")
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    name: "score1"
+
+    BoxLayout:
+        id: boxy
+        orientation: 'vertical'
+        size: root.width, root.height
+        padding: 0
+        spacing: 20
+
+        FloatLayout:
+            id: floaty
+            size: root.width, root.height
+            padding: 0
+
+            Button:
+                text: "Zurück"
+                pos_hint: {"top":1, "x": 0}
+                size: root.width,root.height
+                size_hint: 0.3,0.3
+                background_color: hex("D9D9D9")
+                color: hex("000000")
+
+                on_release:
+                    root.manager.transition.direction = "right"
+                    root.back()
+            Label:
+                id: spiel
+                text: "Name"
+                font_size: 40
+                color: hex("000000")
+                pos_hint: {"top":1, "right": 1}
+                size_hint: 1,0.3
+
+            Button:
+                id: delete
+                text: "Löschen"
+                on_release:
+                    root.delete()
+                background_color: hex("F34D37")
+                pos_hint:{"top":1,"right":1}
+                size_hint: 0.3,0.3
+
+            Spinner:
+                size_hint: 1,0.3
+                pos_hint: {"top":0.7, "x": 0}
+                id: spinner_id
+                text: "Runde Auswählen"
+                values: ["Runde 1","Runde 2","Runde 3","Runde 4","Runde5","Runde 6","Runde 7","Runde 8","Runde 9","Runde 10","Runde 11","Runde 12"]
+                background_color: 1/255,18/255,172/255, 1
+                on_text: root.spinner_clicked(spinner_id.text)
+
+
+        GridLayout:
+            cols: 3
+            padding: 20
+            spacing: 20
+
+
+            TextInput:
+                id: one
+                backgrond_normal: ""
+                background_color: 1,1,1,1
+                multiline: False
+                font_size: 32
+                padding: 20
+
+            TextInput:
+                id: two
+                backgrond_normal: ""
+                background_color: 1,1,1,1
+                multiline: False
+                font_size: 32
+                padding: 20
+
+            TextInput:
+                id: three
+                backgrond_normal: ""
+                background_color: 1,1,1,1
+                multiline: False
+                font_size: 32
+                padding: 20
+
+            TextInput:
+                id: four
+                backgrond_normal: ""
+                background_color: 1,1,1,1
+                multiline: False
+                font_size: 32
+                padding: 20
+
+            TextInput:
+                id: five
+                backgrond_normal: ""
+                background_color: 1,1,1,1
+                multiline: False
+                font_size: 32
+                padding: 20
+
+            TextInput:
+                id: six
+                backgrond_normal: ""
+                background_color: 1,1,1,1
+                multiline: False
+                font_size: 32
+                padding: 20
+
+        Button:
+
+            text: "Bestätigen"
+            size_hint: 1,0.5
+            background_color: hex("FFEF60")
+            color: hex("000000")
+            on_release:
+                root.add_value()
+
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size: root.width, root.height / 5
+            padding: 0
+            spacing: 0
+
+            Label:
+                text: "Diese Runde:"
+                color: hex("000000")
+
+            Label:
+                id: this_round
+                text: "0"
+                font_size: 80
+                color: hex("F34D37")
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size: root.width, root.height / 5
+            padding: 0
+            spacing: 0
+
+            Label:
+                text: "Anzahl X"
+                color: hex("000000")
+
+            Label:
+                id: x_count
+                text: "0"
+                font_size: 80
+                color: hex("F34D37")
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size: root.width, root.height / 5
+            padding: 0
+            spacing: 0
+
+            Label:
+                text: "Insgesamt:"
+                color: hex("000000")
+
+            Label:
+                id: total
+                text: "0"
+                font_size: 80
+                color: hex("F34D37")
