@@ -11,6 +11,7 @@
     bold: True
     font_name: 'fonts/Poppins-Medium.ttf'
 
+
 <Button>
     markup: True
     font_size: '24dp'
@@ -20,6 +21,7 @@
     font_name: 'fonts/Poppins-Bold.ttf'
 
 <Home>:
+
     canvas.before:
         Color:
             rgba: hex("49A8FF")
@@ -30,25 +32,29 @@
     name: "home"
 
     BoxLayout:
+
         orientation: 'vertical'
         size: root.width, root.height
         padding: 20
         spacing: 20
+
         Label:
             text: "Archery"
             font_name: "fonts/Island_Moments/IslandMoments-Regular.ttf"
             font_size: 96
+
         Label:
             text: "Score"
             font_name: "fonts/Island_Moments/IslandMoments-Regular.ttf"
             font_size: 80
+
         Button:
             id: marian
             text: "Marian"
             on_release:
                 root.manager.transition.direction = "left"
                 root.switchScreen("Marian")
-
+                root.manager.get_screen("score1").on_start
 
 
         Button:
@@ -57,15 +63,18 @@
             on_release:
                 root.manager.transition.direction = "left"
                 root.switchScreen("Sophia")
+                root.manager.get_screen("score1").on_start
 
         Button:
-            id: sonja
+            id: sonjaf
             text: "Sonja"
             on_release:
                 root.manager.transition.direction = "left"
                 root.switchScreen("Sonja")
+                root.manager.get_screen("score1").on_start
 
 <Score1>:
+
     canvas.before:
         Color:
             rgba: hex("FFFFFF")
@@ -98,6 +107,9 @@
                 on_release:
                     root.manager.transition.direction = "right"
                     root.back()
+                    root.stop_timer()
+
+
             Label:
                 id: spiel
                 text: "Name"
@@ -180,13 +192,16 @@
                 padding: 20
 
         Button:
-
+            id: confirm
+            disabled: False
             text: "Bestätigen"
             size_hint: 1,0.5
             background_color: hex("FFEF60")
             color: hex("000000")
             on_release:
                 root.add_value()
+
+
 
 
         BoxLayout:
@@ -236,3 +251,4 @@
                 text: "0"
                 font_size: 80
                 color: hex("F34D37")
+
